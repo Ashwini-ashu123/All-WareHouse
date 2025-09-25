@@ -69,21 +69,21 @@ public class loginCred {
 	
 	public void verifyText(String Atitle) throws Exception {
 		String Heading = title.getText();
-		Thread.sleep(5000);
+		Thread.sleep(3000);
 		String ActualHeads = Atitle;
 		Assert.assertEquals(Heading, ActualHeads, "We are not landed on the correct page");
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 	}
 	
 	public void EnqClick() throws Exception {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		dot.click();
 		wait.until(ExpectedConditions.elementToBeClickable(AWHTab)).click();
-		Thread.sleep(5000);
+		Thread.sleep(3000);
 		Enq.click();
 		String EText = Enq.getText();
 		System.out.println("Enq is clicked");
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 	}
 	
 	public void NewClick() throws Exception {

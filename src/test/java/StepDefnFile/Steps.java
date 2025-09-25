@@ -8,6 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import AllPages.Enquiry;
 import AllPages.loginCred;
 import io.cucumber.java.en.*;
 
@@ -16,10 +17,12 @@ public class Steps {
 	WebDriver driver;
 	
 	loginCred lc;
+	Enquiry enq;
 	
 	public Steps() {
 		  driver = new FirefoxDriver();
 		  lc = new loginCred(driver);
+		  enq =  new Enquiry(driver);
 		}
 	
 	
@@ -56,8 +59,9 @@ public class Steps {
 	}
 	
 	@Then("Fill the {string} {string} and {string} {string}  {string}  {string} {string} {string} {string} {string}")
-	public void fill_the_and(String string, String string2, String string3, String string4, String string5, String string6, String string7, String string8, String string9, String string10) {
-	  
+	public void fill_the_and(String Phone, String mail, String laname, String itype, String string5, String string6, String string7, String string8, String string9, String string10) throws Exception {
+	    enq.Screen1Enq(Phone, mail);
+	    enq.screen2A3(laname, itype);
 	}
 
 

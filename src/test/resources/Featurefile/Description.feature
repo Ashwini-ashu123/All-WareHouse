@@ -24,4 +24,4 @@ Then click on the New tab and create the new Enquiry with details
 Then Fill the "<PhoneNumber>" "<mail>" and "<Name>" "<IntentType>"  "<Budget_Range>"  "<Nature of Purchase>" "<Service Required>" "<Size>" "<Enquiry Source>" "<Enquiry Sub Source>"
 Examples:
  | Username                  | Password  | PhoneNumber  | mail              | Name    | IntentType | Budget_Range | Nature of Purchase | Service Required | Size  | Enquiry Source | Enquiry Sub Source |
- | awhris@salesforce.com.uat | RIS@2025  | 9876543210   | test@mail.com     | Ashwin  | Tenant     | 5-10L        | Rent               | shed             | 2500  | Online         | Google Ads         |
+ | awhris@salesforce.com.uat | RIS@2025  | 9076532280   | test5@mail.com     | Shalini  | Tenant     | 5-10L        | Rent               | shed             | 2500  | Online         | Google Ads         |

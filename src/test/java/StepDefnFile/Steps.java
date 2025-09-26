@@ -59,11 +59,20 @@ public class Steps {
 	}
 	
 	@Then("Fill the {string} {string} and {string} {string}  {string}  {string} {string} {string} {string} {string}")
-	public void fill_the_and(String Phone, String mail, String laname, String itype, String string5, String string6, String string7, String string8, String string9, String string10) throws Exception {
+	public void fill_the_and(String Phone, String mail, String laname, String itype, String Budget, String nop1, String service, String size, String enqs, String enqss) throws Exception {
 	    enq.Screen1Enq(Phone, mail);
 	    enq.screen2A3(laname, itype);
+	    enq.screen4(Budget, nop1, service, size, enqs, enqss);
 	}
+	
+	@And("verify the record is created successfully")
+	public void verify_the_record_is_created_successfully() throws Throwable  {
+		enq.verifyRecText();
+	}
+	
 
+	
+	
 
 
 	

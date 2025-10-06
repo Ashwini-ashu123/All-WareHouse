@@ -1,6 +1,6 @@
 Feature: Login to the all warehouse website with valid creds
 
-@FunctionalTesting
+@FunctionalTesting @Bug
 Scenario: Navigate to salesforce URL
 
 Given User navigate to salesforce URL
@@ -12,7 +12,7 @@ Examples:
 |awhris@salesforce.com.uat|RIS@2025|
 
 
-
+@SmokeTesting
 Scenario: User navigate to the Enquires tab
 
 Given User navigate to salesforce URL

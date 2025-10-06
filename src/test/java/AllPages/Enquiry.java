@@ -11,7 +11,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
+
+import static org.junit.Assert.*;
 
 import static java.lang.Thread.sleep;
 
@@ -129,7 +130,7 @@ public class Enquiry {
 			    .visibilityOfElementLocated(By.xpath("//h1//lightning-formatted-text[contains(normalize-space(text()), '" + lastName + "')]")));
 
 		String Text2 = Text1.getText();
-		Assert.assertEquals(lastName, Text2, "Record is not created");
+		assertEquals("Record is not created", Text2, lastName);
 		
 		
 	}

@@ -13,7 +13,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
+import static org.junit.Assert.*;
 
 
 
@@ -71,7 +71,7 @@ public class loginCred {
 		String Heading = title.getText();
 		Thread.sleep(3000);
 		String ActualHeads = Atitle;
-		Assert.assertEquals(Heading, ActualHeads, "We are not landed on the correct page");
+		assertEquals(Heading, ActualHeads, "We are not landed on the correct page");
 		Thread.sleep(2000);
 	}
 	

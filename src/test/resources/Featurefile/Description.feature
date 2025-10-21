@@ -9,7 +9,7 @@ And Click on the Login button
 And Verify that user land on the "All Warehouses" page
 Examples:
 |Username|Password|
-|awhris@salesforce.com.uat|RIS@2025|
+|awhris@salesforce.com.uat|RIS@20725|
 
 
 @SmokeTesting
@@ -26,3 +26,10 @@ And verify the record is created successfully
 Examples:
  | Username                  | Password  | PhoneNumber  | mail              | Name    | IntentType | Budget_Range | Nature of Purchase | Service Required | Size  | Enquiry Source | Enquiry Sub Source |
  | awhris@salesforce.com.uat | RIS@2025  | 8830751266   | test18@mail.com     |Zoya  | Tenant     | 5-10L        | Rent               | Shed             | 2500  |Online         | Google          |
+ 
+ 
+ @APITesting
+ Scenario:Add the enquiry details using the API
+ Given the user loads the base URL
+ When the user gets the objects
+ Then user validate the response

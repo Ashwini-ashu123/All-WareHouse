@@ -13,7 +13,7 @@ public class getCmmand {
 	
 	public void getObject() {
 		Response res = RestAssured.given()
-//				.header("Authorization", "Bearer " + accessToken)
+				.header("Authorization", "Bearer " + "00DH20000008knt!AQEAQAFmIgC.DhDAF6NFY2g0jjBhzUWwQMbsZUeQwOHH.uxaWYv.lT.pUR6G8b965whJtUol3IyeaIc_BL8o_f8rnM.6iVlN")
 				.when().get("/Enquiry__c");
 		System.out.println(res.getBody().asPrettyString());
 	}

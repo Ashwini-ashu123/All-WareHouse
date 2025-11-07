@@ -6,7 +6,11 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -19,23 +23,28 @@ public class hooks {
 	@Before
 	public void setup() {
 		System.out.println("Before in hooks");
-		driver =  new FirefoxDriver();
-		driver.manage().window().maximize();
-		}
+		if (driver == null) {
+            
+            String profilePath = "C:\\Users\\Aswini\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\s4hgnjw7.default-release";
+            FirefoxProfile profile = new FirefoxProfile(new File(profilePath));
+            FirefoxOptions options = new FirefoxOptions();
+            options.setProfile(profile);
+            driver = new FirefoxDriver(options);
+            driver.manage().window().maximize();
+
+            System.out.println("Firefox launched with pre-authenticated profile.");
+        }
+		
+	}
+    
+	    
 	
 	@After
 	public void tearDown(Scenario scenario) throws IOException {
 		driver.quit();
 		System.out.println("After in hooks");
 		
-		if(scenario.isFailed()) {
-			File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-            String fileName = scenario.getName().replaceAll(" ", "_");
-            File dest = new File(System.getProperty("user.dir") + "/screenshots/" + fileName + ".png");
-            FileUtils.copyFile(src, dest);
-            scenario.attach(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES), "image/png", "Failure Screenshot");
-            System.out.println("Screenshot saved at: " + dest.getAbsolutePath());
-		}
+		
 	}
 
 }

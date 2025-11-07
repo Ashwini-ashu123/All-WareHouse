@@ -10,6 +10,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 import AllPages.Enquiry;
 import AllPages.loginCred;
+import hooksClass.hooks;
 import io.cucumber.java.en.*;
 
 public class Steps {
@@ -20,7 +21,7 @@ public class Steps {
 	Enquiry enq;
 	
 	public Steps() {
-		  driver = new FirefoxDriver();
+		  driver = hooks.driver;
 		  lc = new loginCred(driver);
 		  enq =  new Enquiry(driver);
 		}
@@ -68,6 +69,27 @@ public class Steps {
 	@And("verify the record is created successfully")
 	public void verify_the_record_is_created_successfully() throws Throwable  {
 		enq.verifyRecText();
+	}
+	
+	@Then("click on the Search button and search the {string}  and click it")
+	public void Search_the_Enquiry(String ename) throws Exception {
+		enq.enqSearchoption(ename);
+	}
+	
+	@Then("edit the enquiry details {string} and Save it")
+	public void editEnquirydetails(String range) throws Exception {
+		enq.editEnquiry(range);
+	}
+	
+	@And("Add the interested location in the Enquiry {string} {string} and change the status to closed - {string}")
+	public void addInteresteLocation(String Inname1, String InRange1,String reason) throws Exception {
+		enq.intrestedLocation(Inname1, InRange1);
+		enq.convertToqualified(reason);
+	}
+	@And("Verify once done it is navigating the opportunity page with {string}")
+	public void verifyNavigateToOpportunity(String Name1) {
+		enq.VerifyOpportunityNavigate(Name1);
+		
 	}
 	
 

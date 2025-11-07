@@ -64,7 +64,7 @@ public class loginCred {
 	
 	public void loginButton() throws Exception {
 		Login.click();
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		}
 	
 	public void verifyText(String Atitle) throws Exception {

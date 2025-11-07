@@ -109,12 +109,6 @@ public class Enquiry {
 	@FindBy(xpath="//records-entity-label[contains(text(),'Opportunity')]")
 	WebElement OppText;
 	
-	
-	
-	
-	
-	
-
 	private String lastName;
 	
 	public void Screen1Enq(String Phone, String mail) throws Exception {

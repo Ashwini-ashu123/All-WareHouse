@@ -24,7 +24,7 @@ Then Fill the "<PhoneNumber>" "<mail>" and "<Name>" "<IntentType>"  "<Budget_Ran
 And verify the record is created successfully
 Examples:
  | Username                  | Password  | PhoneNumber  | mail                 | Name    | IntentType | Budget_Range | Nature of Purchase | Service Required | Size  | Enquiry Source | Enquiry Sub Source |
- | ashwinimca96@gmail.com    | RIS@2025  | 8400674656   | sdfjdiej@mail.com    |Vignesh     | Tenant     | 5-10L        | Rent               | Land             | 2500  |Online         | Google          |
+ | ashwinimca96@gmail.com    | RIS@2025  | 8400689485   | irjfh@fjkg.com       |Blessy  | Tenant     | 5-10L        | Rent               | Land             | 2500  |Online         | Google          |
  
  
 Scenario: Navigate to Enquiry record and fill the other details
@@ -38,7 +38,24 @@ Scenario: Navigate to Enquiry record and fill the other details
  And Verify once done it is navigating the opportunity page with "<Name>"
  Examples:
   |Username                |Password |Name     |Range      | Interested Name |Interested Range|Reason|
-  |ashwinimca96@gmail.com  |RIS@2025 |Vignesh  |below 10000| Parrays1      |15             |Qualified|
+  |ashwinimca96@gmail.com  |RIS@2025 |Blessy  |below 10000 | Egmore          |15              |Qualified|
+  
+  
+Scenario: Navigate to opportunity and add the unit and generate the proposal
+ Given User navigate to salesforce URL
+ Then Add the "<Username>" and the "<Password>"
+ And Click on the Login button
+ Then navigate to the Opportunity tab and verify the user navigate to the Opportunity page
+ And click on the search button and search the "<Name>" and click it
+ Then verify the record is in qualified stage
+ And User select the unit from search unit tab and add "<UnitName>" the unit in Options
+ 
+ Examples: 
+  |Username                |Password |Name   |UnitName              |
+  |ashwinimca96@gmail.com  |RIS@2025 |Blessy |Vellore ILocation test|
+ 
+ 
+
  
 
  Scenario:Add the enquiry details using the API

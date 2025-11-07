@@ -9,6 +9,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import AllPages.Enquiry;
+import AllPages.OpportunityPage;
 import AllPages.loginCred;
 import hooksClass.hooks;
 import io.cucumber.java.en.*;
@@ -19,11 +20,13 @@ public class Steps {
 	
 	loginCred lc;
 	Enquiry enq;
+	OpportunityPage Opp;
 	
 	public Steps() {
 		  driver = hooks.driver;
 		  lc = new loginCred(driver);
 		  enq =  new Enquiry(driver);
+		  Opp = new OpportunityPage(driver);
 		}
 	
 	
@@ -90,6 +93,28 @@ public class Steps {
 	public void verifyNavigateToOpportunity(String Name1) {
 		enq.VerifyOpportunityNavigate(Name1);
 		
+	}
+	
+	@Then("navigate to the Opportunity tab and verify the user navigate to the Opportunity page")
+	public void oppTab() throws Exception {
+		Opp.SelectOpp();
+		
+	}
+	
+	@And("click on the search button and search the {string} and click it")
+	public void searchOpp(String Oppname) throws Exception {
+		Opp.searchField(Oppname);
+		
+	}
+	
+	@Then("verify the record is in qualified stage")
+	public void verifyStage() {
+		Opp.VerifyStage();
+	}
+	
+	@And("User select the unit from search unit tab and add {string} the unit in Options")
+	public void unitAdd(String UnitName1) {
+		Opp.searchUnitAdd(UnitName1);
 	}
 	
 

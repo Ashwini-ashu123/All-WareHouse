@@ -69,6 +69,8 @@ public class OpportunityPage {
 	@FindBy(xpath="//input[@name='Save_Proposal_as']")
 	WebElement propName;
 	
+	@FindBy(xpath="//button[contains(text(),'Send Proposal to Customer')]")
+	WebElement sendProp;
 	
 
 	public void SelectOpp() throws Exception {
@@ -134,6 +136,10 @@ public class OpportunityPage {
 		propNa.click();
 		propNa.sendKeys(ProposalName);
 		wait.until(ExpectedConditions.elementToBeClickable(nextbutton)).click();
+		sleep(10000);
+		wait.until(ExpectedConditions.visibilityOfAllElements(sendProp));
+		sendProp.click();
+		System.out.println("mail send to customer");
 	}
 	
 	public void verifyPropGenerate() throws Exception{

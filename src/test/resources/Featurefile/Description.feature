@@ -2,7 +2,6 @@ Feature: Login to the all warehouse website with valid creds
 
 
 Scenario: Navigate to salesforce URL
-
 Given User navigate to salesforce URL
 Then Add the "<Username>" and the "<Password>"
 And Click on the Login button
@@ -12,8 +11,7 @@ Examples:
 |awhris@salesforce.com.uat|1RIS@2025|
 
 
-Scenario: User navigate to the Enquires tab
-
+Scenario: User navigate to the Enquires tab and create new enquiry
 Given User navigate to salesforce URL
 Then Add the "<Username>" and the "<Password>"
 And Click on the Login button
@@ -60,9 +58,6 @@ Scenario: Navigate to opportunity and add the unit and generate the proposal
 
  
 
- Scenario:Add the enquiry details using the API
- Given the user loads the base URL
- When the user gets the objects
- Then user validate the response
+
  
  

@@ -1,6 +1,8 @@
 package hooksClass;
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -37,14 +39,31 @@ public class hooks {
 		
 	}
     
-	    
-	
 	@After
 	public void tearDown(Scenario scenario) throws IOException {
-		driver.quit();
-		System.out.println("After in hooks");
+		 try {
+	            if (scenario.isFailed()) {
+	             
+	                String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+	                File source = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+                    String screenshotPath = System.getProperty("user.dir") 
+	                        + "/screenshots/" 
+	                        + scenario.getName().replaceAll(" ", "_") 
+	                        + "_" + timestamp + ".png";
+                    FileUtils.copyFile(source, new File(screenshotPath));
+                    System.out.println("📸 Screenshot saved at: " + screenshotPath);
+	            }
+	        } catch (Exception e) {
+	            System.out.println("Failed to capture screenshot: " + e.getMessage());
+	        } finally {
+	            if (driver != null) {
+	                driver.quit();
+	            }
+	            System.out.println("After hook executed - Browser closed");
+	        }
+	    }
+		
 		
 		
 	}
 
-}

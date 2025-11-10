@@ -107,14 +107,24 @@ public class Steps {
 		
 	}
 	
-	@Then("verify the record is in qualified stage")
-	public void verifyStage() {
-		Opp.VerifyStage();
+	@Then("verify the record is in {string} stage")
+	public void verifyStage(String stage) throws Exception {
+		Opp.VerifyStage(stage);
 	}
 	
 	@And("User select the unit from search unit tab and add {string} the unit in Options")
-	public void unitAdd(String UnitName1) {
+	public void unitAdd(String UnitName1) throws Exception {
 		Opp.searchUnitAdd(UnitName1);
+	}
+	
+	@And("Click on the generate proposal and send it to customer")
+	public void generateProp() throws Exception {
+		Opp.generatePropsal();
+	}
+	
+	@Then("verify the proposal is created in Files")
+	public void proposalVerify() throws Exception {
+		Opp.verifyPropGenerate();
 	}
 	
 

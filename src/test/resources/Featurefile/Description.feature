@@ -47,8 +47,12 @@ Scenario: Navigate to opportunity and add the unit and generate the proposal
  And Click on the Login button
  Then navigate to the Opportunity tab and verify the user navigate to the Opportunity page
  And click on the search button and search the "<Name>" and click it
- Then verify the record is in qualified stage
+ Then verify the record is in "Qualified" stage
  And User select the unit from search unit tab and add "<UnitName>" the unit in Options
+ And Click on the generate proposal and send it to customer
+ Then verify the proposal is created in Files
+ Then verify the record is in "Proposal" stage
+ 
  
  Examples: 
   |Username                |Password |Name   |UnitName              |

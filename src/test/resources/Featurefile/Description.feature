@@ -52,8 +52,6 @@ Scenario: Navigate to opportunity and add the unit and generate the proposal
  And Click on the generate proposal and send it to customer
  Then verify the proposal is created in Files
  Then verify the record is in "Proposal" stage
- 
- 
  Examples: 
   |Username                |Password |Name   |UnitName              |
   |ashwinimca96@gmail.com  |RIS@2025 |Blessy |Vellore ILocation test|

@@ -10,6 +10,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 import AllPages.Enquiry;
 import AllPages.OpportunityPage;
+import AllPages.Sitevisit;
 import AllPages.loginCred;
 import hooksClass.hooks;
 import io.cucumber.java.en.*;
@@ -21,12 +22,14 @@ public class Steps {
 	loginCred lc;
 	Enquiry enq;
 	OpportunityPage Opp;
+	Sitevisit sv;
 	
 	public Steps() {
 		  driver = hooks.driver;
 		  lc = new loginCred(driver);
 		  enq =  new Enquiry(driver);
 		  Opp = new OpportunityPage(driver);
+		  sv = new Sitevisit(driver);
 		}
 	
 	
@@ -125,6 +128,16 @@ public class Steps {
 	@Then("verify the proposal is created in Files")
 	public void proposalVerify() throws Exception {
 		Opp.verifyPropGenerate();
+	}
+	
+	@Then ("user navigate to the sitevisit and create the sitevisit")
+	public void sitevisit_Schedule() throws Exception {
+		sv.schSiteVisit();
+	}
+	
+	@And("verify the site visit is created successfully with the {string}")
+	public void verifySiteVisit(String Name1) {
+		sv.verifySiteVisit(Name1);
 	}
 	
 

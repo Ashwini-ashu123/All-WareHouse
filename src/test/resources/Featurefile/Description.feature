@@ -1,6 +1,5 @@
 Feature: Login to the all warehouse website with valid creds
 
-
 Scenario: Navigate to salesforce URL
 Given User navigate to salesforce URL
 Then Add the "<Username>" and the "<Password>"
@@ -54,8 +53,19 @@ Scenario: Navigate to opportunity and add the unit and generate the proposal
   |Username                |Password |Name   |UnitName              |
   |ashwinimca96@gmail.com  |RIS@2025 |Blessy |Vellore ILocation test|
  
- 
-
+Scenario: Once done the proposal navigate to the sitevisit and create the site visit
+ Given User navigate to salesforce URL
+ Then Add the "<Username>" and the "<Password>"
+ And Click on the Login button
+ Then navigate to the Opportunity tab and verify the user navigate to the Opportunity page
+ And click on the search button and search the "<Name>" and click it
+ Then verify the record is in "Proposal" stage
+ Then user navigate to the sitevisit and create the sitevisit
+ And verify the site visit is created successfully with the "<Name>"
+ Then verify the record is in "Site Visit" stage
+ Examples: 
+  |Username                |Password |Name   |
+  |ashwinimca96@gmail.com  |RIS@2025 |Blessy |
  
 
 

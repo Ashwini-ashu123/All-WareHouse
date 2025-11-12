@@ -66,6 +66,23 @@ Scenario: Once done the proposal navigate to the sitevisit and create the site v
  Examples: 
   |Username                |Password |Name   |
   |ashwinimca96@gmail.com  |RIS@2025 |Blessy |
+  
+ Scenario: Navigate to the site visit and mark complete the site visit 
+  Given User navigate to salesforce URL
+  Then Add the "<Username>" and the "<Password>"
+  And Click on the Login button
+  Then navigate to the Opportunity tab and verify the user navigate to the Opportunity page
+  And click on the search button and search the "<Name>" and click it
+  Then verify the record is in "Site Visit" stage
+  And navigate to the site visit and check the status of in "<Name>" and click on it
+  Then verify the user is in site visit page
+  And Click on the mark complete and complete the site visit process
+  #Then verify the site visit is marked as complete with the location update
+  Examples: 
+  |Username                |Password |Name   |
+  |ashwinimca96@gmail.com  |RIS@2025 |Blessy |
+ 
+
  
 
 

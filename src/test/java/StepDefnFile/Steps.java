@@ -140,6 +140,20 @@ public class Steps {
 		sv.verifySiteVisit(Name1);
 	}
 	
+	@And("navigate to the site visit and check the status of in {string} and click on it")
+	public void siteVisitClick(String Name1) {
+		sv.VerifySVStatus_click(Name1);
+	}
+	
+	@Then("verify the user is in site visit page")
+	public void verifyinSiteVisit() {
+		sv.verify_in_SitevisitPage();
+	}
+	
+	@And("Click on the mark complete and complete the site visit process")
+	public void siteVisitProcess() {
+		sv.siteVisitProcess();
+	}
 
 	
 	

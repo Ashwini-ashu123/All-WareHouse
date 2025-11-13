@@ -77,10 +77,29 @@ Scenario: Once done the proposal navigate to the sitevisit and create the site v
   And navigate to the site visit and check the status of in "<Name>" and click on it
   Then verify the user is in site visit page
   And Click on the mark complete and complete the site visit process
-  #Then verify the site visit is marked as complete with the location update
+  Then verify the site visit is marked as complete with the location update
   Examples: 
   |Username                |Password |Name   |
   |ashwinimca96@gmail.com  |RIS@2025 |Blessy |
+  
+  
+ Scenario: Send the Negotation checklist to the tenant and landlord
+  Given User navigate to salesforce URL
+  Then Add the "<Username>" and the "<Password>"
+  And Click on the Login button
+  Then navigate to the Opportunity tab and verify the user navigate to the Opportunity page
+  And click on the search button and search the "<Name>" and click it
+  Then verify the record is in "Site Visit" stage
+  And Verify the site visit is completed
+  Then navigate to the Negotiation checkList and create it
+  #And fill the checklist form and click on save
+  #Then verify the negotition is created in Files
+  #Then verify the record is in "Negotiation" stage 
+   Examples: 
+  |Username                |Password |Name   |
+  |ashwinimca96@gmail.com  |RIS@2025 |Blessy |
+  
+  
  
 
  

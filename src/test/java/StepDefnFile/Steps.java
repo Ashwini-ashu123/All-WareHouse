@@ -2,6 +2,7 @@ package StepDefnFile;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeoutException;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -9,6 +10,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import AllPages.Enquiry;
+import AllPages.Negotiation;
 import AllPages.OpportunityPage;
 import AllPages.Sitevisit;
 import AllPages.loginCred;
@@ -23,6 +25,7 @@ public class Steps {
 	Enquiry enq;
 	OpportunityPage Opp;
 	Sitevisit sv;
+	Negotiation neg;
 	
 	public Steps() {
 		  driver = hooks.driver;
@@ -30,6 +33,7 @@ public class Steps {
 		  enq =  new Enquiry(driver);
 		  Opp = new OpportunityPage(driver);
 		  sv = new Sitevisit(driver);
+		  neg = new Negotiation(driver);
 		}
 	
 	
@@ -146,15 +150,30 @@ public class Steps {
 	}
 	
 	@Then("verify the user is in site visit page")
-	public void verifyinSiteVisit() {
+	public void verifyinSiteVisit() throws Exception {
 		sv.verify_in_SitevisitPage();
 	}
 	
 	@And("Click on the mark complete and complete the site visit process")
-	public void siteVisitProcess() {
+	public void siteVisitProcess() throws Exception {
 		sv.siteVisitProcess();
 	}
+	
+	@Then("verify the site visit is marked as complete with the location update")
+	public void sitevisitVerify() {
+		sv.verifySiteVisitComplete();
+	}
+	
+	@And("Verify the site visit is completed")
+	public void verifyCompletedSV() {
+		neg.checkSiteVisit();
+	}
+	
+	@Then("navigate to the Negotiation checkList and create it")
+	public void CreateNego() throws Exception {
+		neg.Click_Nego();
 
+	}
 	
 	
 

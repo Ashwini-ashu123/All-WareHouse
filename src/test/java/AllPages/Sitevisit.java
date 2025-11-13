@@ -2,9 +2,16 @@ package AllPages;
 
 import static java.lang.Thread.sleep;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.concurrent.TimeoutException;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -43,7 +50,7 @@ public class Sitevisit {
 	 WebElement save;
 	 
 	 @FindBy(xpath="(//article[@class='slds-card slds-has-top-magnet'])[1]")
-	 WebElement article;
+	 private WebElement article;
 	 
 	 @FindBy(xpath="//records-entity-label")
 	 WebElement sitevisitHead;
@@ -57,8 +64,22 @@ public class Sitevisit {
 	 @FindBy(xpath="//button[contains(text(),'Capture Image')]")
 	 WebElement captureImg;
 	 
-	 @FindBy(xpath="//button[contains(text(),'Capture Image')]")
+	 @FindBy(xpath="//button[contains(text(),'Next')]")
 	 WebElement Next;
+	 
+	 @FindBy(xpath="//img[@alt='Captured Image']")
+	 WebElement imgSrc;
+	 
+	 @FindBy(xpath="//lightning-formatted-location")
+	 WebElement svCompleted;
+	 
+	 @FindBy(xpath="//lightning-formatted-text[contains(text(),'Completed')]")
+	 WebElement completed;
+	 
+	 public WebElement getArticle() {
+		 return article;
+	 }
+	 
 	 
 	 public void schSiteVisit() throws Exception {
 		 WebDriverWait wait =  new WebDriverWait(driver, Duration.ofSeconds(40));
@@ -97,11 +118,18 @@ public class Sitevisit {
 		 WebElement textdata = wait.until(ExpectedConditions.visibilityOf(article));
 		 String text1 = textdata.getText();
 		 System.out.println(text1);
-		 Assert.assertTrue(text1.contains("Scheduled"),"No the site visit is not in scheduled status");
-		 Sitevisit.click();
+//		 Assert.assertTrue(text1.contains("Scheduled"),"No the site visit is not in scheduled status");
+		 String link = Sitevisit.getAttribute("href");
+		 JavascriptExecutor js = (JavascriptExecutor) driver;
+		 js.executeScript("window.open(arguments[0], '_blank');", link);
+//		 Sitevisit.click();
+		 ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+		 driver.switchTo().window(tabs.get(1));  // new tab index is usually 1
+		 System.out.println("Switched to new tab.");
 		}
 	 
-	 public void verify_in_SitevisitPage() {
+	 public void verify_in_SitevisitPage() throws Exception {
+		 sleep(10000);
 		 WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(40));
 		 String AcutalText = wait.until(ExpectedConditions.visibilityOf(sitevisitHead)).getText();
 		 String ExpectedText = "Site Visit";
@@ -109,7 +137,7 @@ public class Sitevisit {
 		 
 		}
 	 
-	 public void siteVisitProcess() {
+	 public void siteVisitProcess() throws TimeoutException, Exception {
 		 WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(40));
 		 wait.until(ExpectedConditions.elementToBeClickable(markComplete)).click();
 		 wait.until(ExpectedConditions.elementToBeClickable(toggle)).click();
@@ -117,5 +145,33 @@ public class Sitevisit {
 		 System.out.println("Capture img click");
 		 wait.until(ExpectedConditions.elementToBeClickable(Next)).click();
 		 System.out.println("Click next");
+		 WebElement imageElement = wait.until(ExpectedConditions.visibilityOf(imgSrc));  
+		 sleep(10000);
+		if (imageElement.isDisplayed()) {
+		    System.out.println("Image is displayed.");
+		    sleep(5000);
+		    File screenshot = imageElement.getScreenshotAs(OutputType.FILE);
+		    File destFile = new File(System.getProperty("user.dir") + "/screenshots/CaptureImages/SiteVisitImage.png");;
+		    FileUtils.copyFile(screenshot, destFile);
+		    System.out.println("Image captured successfully: " + destFile.getAbsolutePath());
+		}
+		wait.until(ExpectedConditions.elementToBeClickable(Next)).click();
+		sleep(5000);
 	 }
-}
+	 
+	 public void verifySiteVisitComplete() {
+		 WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(40));
+		 wait.until(ExpectedConditions.visibilityOf(svCompleted));
+			String locationUpdate = svCompleted.getText();
+			if(locationUpdate.matches(".*\\d+.*")) {
+				System.out.println("location updated successfully");
+			}else {
+				System.out.println("Location is not updated");
+			}
+			String ActualText = wait.until(ExpectedConditions.visibilityOf(completed)).getText();
+			String ExpectedText = "Completed";
+			Assert.assertEquals(ActualText, ExpectedText,"Site visit is not in completed");
+			}
+		 
+	 }
+

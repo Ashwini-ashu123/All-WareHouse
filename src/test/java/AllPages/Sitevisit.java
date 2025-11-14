@@ -65,7 +65,7 @@ public class Sitevisit {
 	 WebElement captureImg;
 	 
 	 @FindBy(xpath="//button[contains(text(),'Next')]")
-	 WebElement Next;
+	 private WebElement Next;
 	 
 	 @FindBy(xpath="//img[@alt='Captured Image']")
 	 WebElement imgSrc;
@@ -78,6 +78,10 @@ public class Sitevisit {
 	 
 	 public WebElement getArticle() {
 		 return article;
+	 }
+	 
+	 public WebElement getNext() {
+		 return Next;
 	 }
 	 
 	 

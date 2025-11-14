@@ -20,8 +20,8 @@ Then click on the New tab and create the new Enquiry with details
 Then Fill the "<PhoneNumber>" "<mail>" and "<Name>" "<IntentType>"  "<Budget_Range>"  "<Nature of Purchase>" "<Service Required>" "<Size>" "<Enquiry Source>" "<Enquiry Sub Source>"
 And verify the record is created successfully
 Examples:
- | Username                  | Password  | PhoneNumber  | mail                 | Name    | IntentType | Budget_Range | Nature of Purchase | Service Required | Size  | Enquiry Source | Enquiry Sub Source |
- | ashwinimca96@gmail.com    | RIS@2025  | 8400689485   | irjfh@fjkg.com       |Blessy  | Tenant     | 5-10L        | Rent               | Land             | 2500  |Online         | Google          |
+ | Username                  | Password  | PhoneNumber  | mail                               | Name    | IntentType | Budget_Range | Nature of Purchase | Service Required | Size  | Enquiry Source | Enquiry Sub Source |
+ | ashwinimca96@gmail.com    | RIS@2025  | 9487312257   | aswini.paneerselvam007@gmail.com   | Dhoni   | Tenant     | 5-10L        | Rent               | Land             | 2500  |Online         | Google          |
  
  
 Scenario: Navigate to Enquiry record and fill the other details
@@ -35,7 +35,7 @@ Scenario: Navigate to Enquiry record and fill the other details
  And Verify once done it is navigating the opportunity page with "<Name>"
  Examples:
   |Username                |Password |Name     |Range      | Interested Name |Interested Range|Reason|
-  |ashwinimca96@gmail.com  |RIS@2025 |Blessy  |below 10000 | Egmore          |15              |Qualified|
+  |ashwinimca96@gmail.com  |RIS@2025 |Dhoni  |below 10000 | Egmore          |15              |Qualified|
   
   
 Scenario: Navigate to opportunity and add the unit and generate the proposal
@@ -51,7 +51,7 @@ Scenario: Navigate to opportunity and add the unit and generate the proposal
  Then verify the record is in "Proposal" stage
  Examples: 
   |Username                |Password |Name   |UnitName              |
-  |ashwinimca96@gmail.com  |RIS@2025 |Blessy |Vellore ILocation test|
+  |ashwinimca96@gmail.com  |RIS@2025 |Dhoni |Vellore ILocation test|
  
 Scenario: Once done the proposal navigate to the sitevisit and create the site visit
  Given User navigate to salesforce URL
@@ -65,7 +65,7 @@ Scenario: Once done the proposal navigate to the sitevisit and create the site v
  Then verify the record is in "Site Visit" stage
  Examples: 
   |Username                |Password |Name   |
-  |ashwinimca96@gmail.com  |RIS@2025 |Blessy |
+  |ashwinimca96@gmail.com  |RIS@2025 |Dhoni |
   
  Scenario: Navigate to the site visit and mark complete the site visit 
   Given User navigate to salesforce URL
@@ -80,7 +80,7 @@ Scenario: Once done the proposal navigate to the sitevisit and create the site v
   Then verify the site visit is marked as complete with the location update
   Examples: 
   |Username                |Password |Name   |
-  |ashwinimca96@gmail.com  |RIS@2025 |Blessy |
+  |ashwinimca96@gmail.com  |RIS@2025 |Dhoni |
   
   
  Scenario: Send the Negotation checklist to the tenant and landlord
@@ -92,12 +92,12 @@ Scenario: Once done the proposal navigate to the sitevisit and create the site v
   Then verify the record is in "Site Visit" stage
   And Verify the site visit is completed
   Then navigate to the Negotiation checkList and create it
-  #And fill the checklist form and click on save
-  #Then verify the negotition is created in Files
-  #Then verify the record is in "Negotiation" stage 
+  And fill the checklist form and click on save
+  Then verify the negotition is created in Files
+  Then verify the record is in "Negotiation" stage 
    Examples: 
   |Username                |Password |Name   |
-  |ashwinimca96@gmail.com  |RIS@2025 |Blessy |
+  |ashwinimca96@gmail.com  |RIS@2025 |Dhoni |
   
   
  

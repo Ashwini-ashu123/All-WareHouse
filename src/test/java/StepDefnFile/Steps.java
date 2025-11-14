@@ -175,6 +175,16 @@ public class Steps {
 
 	}
 	
+	@And("fill the checklist form and click on save")
+	public void getForm() throws Exception {
+		neg.nego_form();
+	}
+	
+	@Then("verify the negotition is created in Files")
+	public void verifyFiles() throws Exception {
+		neg.verifyNego();
+	}
+	
 	
 
 

@@ -2,6 +2,7 @@ pipeline {
     agent any
 
     stages {
+
         stage('Checkout') {
             steps {
                 checkout scm
@@ -10,13 +11,13 @@ pipeline {
 
         stage('Build & Run Tests') {
             steps {
-                sh 'mvn clean test -Dmaven.test.failure.ignore=true'
+                bat 'mvn clean test -Dmaven.test.failure.ignore=true'
             }
         }
 
         stage('Publish Test Reports') {
             steps {
-               junit 'test-output/testng-results.xml'
+                junit 'test-output/testng-results.xml'
             }
         }
 

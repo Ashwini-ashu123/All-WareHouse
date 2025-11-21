@@ -1,11 +1,6 @@
 pipeline {
     agent any
 
-    tools {
-        maven "MAVEN_HOME"
-        jdk "JDK_HOME"
-    }
-
     stages {
         stage('Checkout SCM') {
             steps {
@@ -21,7 +16,7 @@ pipeline {
 
         stage('Publish Test Reports') {
             steps {
-                junit 'target/cucumber.xml'   // Jenkins will read your cucumber XML report
+                junit 'target/cucumber.xml'
             }
         }
 

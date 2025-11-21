@@ -1,11 +1,15 @@
 pipeline {
     agent any
 
-    stages {
+    tools {
+        maven "MAVEN_HOME"
+        jdk "JDK_HOME"
+    }
 
-        stage('Checkout') {
+    stages {
+        stage('Checkout SCM') {
             steps {
-                checkout scm
+                git url: 'https://github.com/Ashwini-ashu123/All-WareHouse.git', branch: 'master'
             }
         }
 
@@ -17,20 +21,14 @@ pipeline {
 
         stage('Publish Test Reports') {
             steps {
-                junit 'test-output/testng-results.xml'
+                junit 'target/cucumber.xml'   // Jenkins will read your cucumber XML report
             }
         }
 
         stage('Archive Reports') {
             steps {
-                archiveArtifacts artifacts: 'target/surefire-reports/**', allowEmptyArchive: true
+                archiveArtifacts artifacts: 'target/**', fingerprint: true
             }
-        }
-    }
-
-    post {
-        always {
-            echo 'Pipeline completed.'
         }
     }
 }

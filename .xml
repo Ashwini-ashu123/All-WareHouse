@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Cucumber Test Suite" verbose="1" parallel="false">
+
+    <test name="Cucumber Test Execution">
+        <classes>
+            <!-- Your Cucumber TestNG Runner Class -->
+            <class name="RunnerClass.runnerPage" />
+        </classes>
+    </test>
+
+</suite>

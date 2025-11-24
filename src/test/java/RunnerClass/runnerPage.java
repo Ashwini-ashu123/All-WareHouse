@@ -1,10 +1,8 @@
 package RunnerClass;
 
-import org.junit.runner.RunWith;
-import io.cucumber.junit.Cucumber;
-import io.cucumber.junit.CucumberOptions;
+import io.cucumber.testng.AbstractTestNGCucumberTests;
+import io.cucumber.testng.CucumberOptions;
 
-@RunWith(Cucumber.class)
 @CucumberOptions(
         features = "src/test/resources/Featurefile",
         glue = {"StepDefnFile", "hooksClass"},
@@ -12,9 +10,9 @@ import io.cucumber.junit.CucumberOptions;
                 "pretty",
                 "html:target/cucumber-reports.html",
                 "json:target/cucumber.json",
-                "junit:target/cucumber.xml"   
-        }
+                "junit:target/cucumber.xml"
+        },
+        monochrome = true
 )
-public class runnerPage {
-
+public class runnerPage extends AbstractTestNGCucumberTests {
 }

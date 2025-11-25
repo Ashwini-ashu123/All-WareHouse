@@ -75,7 +75,9 @@ public class OpportunityPage {
 
 	public void SelectOpp() throws Exception {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.elementToBeClickable(oppTab)).click();
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView({block: 'center'});", oppTab);
+		js.executeScript("arguments[0].click();", oppTab);
 //		oppTab.click();
 		sleep(3000);
 		String actualText = OppVerify.getText();

@@ -87,7 +87,9 @@ public class Sitevisit {
 	 
 	 public void schSiteVisit() throws Exception {
 		 WebDriverWait wait =  new WebDriverWait(driver, Duration.ofSeconds(40));
-		 wait.until(ExpectedConditions.elementToBeClickable(sitevisitSch)).click();
+		 JavascriptExecutor js = (JavascriptExecutor) driver;
+		 js.executeScript("arguments[0].scrollIntoView({block: 'center'});", sitevisitSch);
+		 js.executeScript("arguments[0].click();", sitevisitSch);
 		 WebElement date1 = wait.until((ExpectedConditions.visibilityOf(datefield)));
 		 date1.click();
 		 String datefill = "25-Nov-2025";
@@ -151,14 +153,14 @@ public class Sitevisit {
 		 System.out.println("Click next");
 		 WebElement imageElement = wait.until(ExpectedConditions.visibilityOf(imgSrc));  
 		 sleep(10000);
-		if (imageElement.isDisplayed()) {
-		    System.out.println("Image is displayed.");
-		    sleep(5000);
-		    File screenshot = imageElement.getScreenshotAs(OutputType.FILE);
-		    File destFile = new File(System.getProperty("user.dir") + "/screenshots/CaptureImages/SiteVisitImage.png");;
-		    FileUtils.copyFile(screenshot, destFile);
-		    System.out.println("Image captured successfully: " + destFile.getAbsolutePath());
-		}
+//		if (imageElement.isDisplayed()) {
+//		    System.out.println("Image is displayed.");
+//		    sleep(5000);
+//		    File screenshot = imageElement.getScreenshotAs(OutputType.FILE);
+//		    File destFile = new File(System.getProperty("user.dir") + "/screenshots/CaptureImages/SiteVisitImage.png");;
+//		    FileUtils.copyFile(screenshot, destFile);
+//		    System.out.println("Image captured successfully: " + destFile.getAbsolutePath());
+//		}
 		wait.until(ExpectedConditions.elementToBeClickable(Next)).click();
 		sleep(5000);
 	 }

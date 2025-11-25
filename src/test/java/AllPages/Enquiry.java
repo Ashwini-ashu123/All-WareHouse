@@ -82,6 +82,9 @@ public class Enquiry {
 	@FindBy(xpath="//lightning-button-menu[@class='menu-button-item slds-dropdown_actions slds-dropdown-trigger slds-dropdown-trigger_click']")
 	WebElement dropdown;
 	
+	@FindBy(xpath="//button[@name='Edit']")
+	WebElement editButton;
+	
 	@FindBy(xpath="//a//span[contains(text(),'Edit')]")
 	WebElement editText;
 	
@@ -190,9 +193,9 @@ public class Enquiry {
 	}
 	
 	public void editEnquiry(String range1) throws Exception {
-		sleep(3000);
-		dropdown.click();
-		editText.click();
+		sleep(10000);
+		editButton.click();
+//		editText.click();
 		sleep(5000);
 		
 		JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -232,10 +235,10 @@ public class Enquiry {
 	
 	public void convertToqualified(String Qualified1) throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		dropdown.click();
+		editButton.click();
 		sleep(5000);
-		wait.until(ExpectedConditions.elementToBeClickable(editText));
-		editText.click();
+//		wait.until(ExpectedConditions.elementToBeClickable(editText));
+//		editText.click();
 		wait.until(ExpectedConditions.elementToBeClickable(StatusClick));
 		StatusClick.click();
 		wait.until(ExpectedConditions.elementToBeClickable(closedClick));

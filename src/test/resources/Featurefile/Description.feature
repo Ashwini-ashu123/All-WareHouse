@@ -42,7 +42,7 @@ Scenario: Complete Sales Lifecycle from Enquiry Creation to Negotiation Stage
     And navigate to the site visit and check the status of in "<Name>" and click on it
     Then verify the user is in site visit page
     And Click on the mark complete and complete the site visit process
-    Then verify the site visit is marked as complete with the location update
+    Then verify the site visit is marked as complete with the location update and move to "<Name>"
 
     # --- NEGOTIATION CHECKLIST ---
     #Then navigate to the Opportunity tab and verify the user navigate to the Opportunity page

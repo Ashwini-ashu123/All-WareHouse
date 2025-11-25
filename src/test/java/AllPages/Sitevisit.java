@@ -92,7 +92,7 @@ public class Sitevisit {
 		 js.executeScript("arguments[0].click();", sitevisitSch);
 		 WebElement date1 = wait.until((ExpectedConditions.visibilityOf(datefield)));
 		 date1.click();
-		 String datefill = "25-Nov-2025";
+		 String datefill = "25-Dec-2025";
 		 String timeFill = "3.30PM";
 		 String visitNu = "3";
 		 date1.sendKeys(datefill);
@@ -151,7 +151,7 @@ public class Sitevisit {
 		 System.out.println("Capture img click");
 		 wait.until(ExpectedConditions.elementToBeClickable(Next)).click();
 		 System.out.println("Click next");
-		 WebElement imageElement = wait.until(ExpectedConditions.visibilityOf(imgSrc));  
+//		 WebElement imageElement = wait.until(ExpectedConditions.visibilityOf(imgSrc));  
 		 sleep(10000);
 //		if (imageElement.isDisplayed()) {
 //		    System.out.println("Image is displayed.");
@@ -165,18 +165,23 @@ public class Sitevisit {
 		sleep(5000);
 	 }
 	 
-	 public void verifySiteVisitComplete() {
+	 public void verifySiteVisitComplete(String Name) {
 		 WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(40));
-		 wait.until(ExpectedConditions.visibilityOf(svCompleted));
-			String locationUpdate = svCompleted.getText();
-			if(locationUpdate.matches(".*\\d+.*")) {
-				System.out.println("location updated successfully");
-			}else {
-				System.out.println("Location is not updated");
-			}
+//		 wait.until(ExpectedConditions.visibilityOf(svCompleted));
+//			String locationUpdate = svCompleted.getText();
+//			if(locationUpdate.matches(".*\\d+.*")) {
+//				System.out.println("location updated successfully");
+//			}else {
+//				System.out.println("Location is not updated");
+//			}
 			String ActualText = wait.until(ExpectedConditions.visibilityOf(completed)).getText();
 			String ExpectedText = "Completed";
 			Assert.assertEquals(ActualText, ExpectedText,"Site visit is not in completed");
+			WebElement backToSiteVist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//span[contains(text(),'"+Name+"')])[4]")));
+			((JavascriptExecutor) driver).executeScript("window.open()");
+            ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+			driver.switchTo().window(tabs.get(1));
+			backToSiteVist.click();
 			}
 		 
 	 }

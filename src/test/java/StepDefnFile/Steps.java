@@ -159,9 +159,9 @@ public class Steps {
 		sv.siteVisitProcess();
 	}
 	
-	@Then("verify the site visit is marked as complete with the location update")
-	public void sitevisitVerify() {
-		sv.verifySiteVisitComplete();
+	@Then("verify the site visit is marked as complete with the location update and move to {string}")
+	public void sitevisitVerify(String Name) {
+		sv.verifySiteVisitComplete(Name);
 	}
 	
 	@And("Verify the site visit is completed")

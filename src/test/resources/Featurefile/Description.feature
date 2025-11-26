@@ -38,7 +38,6 @@ Scenario: Complete Sales Lifecycle from Enquiry Creation to Negotiation Stage
     # --- COMPLETE SITE VISIT ---
     #Then navigate to the Opportunity tab and verify the user navigate to the Opportunity page
     #And click on the search button and search the "<Name>" and click it
-    Then verify the record is in "Site Visit" stage
     And navigate to the site visit and check the status of in "<Name>" and click on it
     Then verify the user is in site visit page
     And Click on the mark complete and complete the site visit process

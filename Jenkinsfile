@@ -31,3 +31,16 @@ pipeline {
         }
     }
 }
+post {
+        success {
+            mail to: 'aswini.p@rudhrainfosolutions.com',
+            subject: "Jenkins Build Successful",
+            body: "Your Jenkins pipeline has completed successfully."
+        }
+        failure {
+            mail to: 'aswini.p@rudhrainfosolutions.com',
+            subject: "Jenkins Build Failed",
+            body: "Your Jenkins pipeline has failed. Please check the logs."
+        }
+    }
+}

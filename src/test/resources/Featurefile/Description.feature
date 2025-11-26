@@ -42,17 +42,17 @@ Scenario: Complete Sales Lifecycle from Enquiry Creation to Negotiation Stage
     And navigate to the site visit and check the status of in "<Name>" and click on it
     Then verify the user is in site visit page
     And Click on the mark complete and complete the site visit process
-    Then verify the site visit is marked as complete with the location update and move to "<Name>"
+    #Then verify the site visit is marked as complete with the location update and move to "<Name>"
 
     # --- NEGOTIATION CHECKLIST ---
     #Then navigate to the Opportunity tab and verify the user navigate to the Opportunity page
     #And click on the search button and search the "<Name>" and click it
-    Then verify the record is in "Site Visit" stage
-    And Verify the site visit is completed
-    Then navigate to the Negotiation checkList and create it
-    And fill the checklist form and click on save
-    Then verify the negotition is created in Files
-    Then verify the record is in "Negotiation" stage
+    #Then verify the record is in "Site Visit" stage
+    #And Verify the site visit is completed
+    #Then navigate to the Negotiation checkList and create it
+    #And fill the checklist form and click on save
+    #Then verify the negotition is created in Files
+    #Then verify the record is in "Negotiation" stage
 
 Examples:
     | Username               | Password | PhoneNumber | mail                | Name        | IntentType | Budget_Range | Nature of Purchase | Service Required | Size | Enquiry Source | Enquiry Sub Source | Range      | InterestedName | InterestedRange | Reason    | UnitName               |

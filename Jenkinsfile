@@ -30,8 +30,8 @@ pipeline {
             }
         }
     }
-}
-post {
+
+    post {
         success {
             mail to: 'aswini.p@rudhrainfosolutions.com',
             subject: "Jenkins Build Successful",

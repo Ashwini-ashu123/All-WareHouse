@@ -56,3 +56,11 @@ Scenario: Complete Sales Lifecycle from Enquiry Creation to Negotiation Stage
 Examples:
     | Username               | Password | PhoneNumber | mail                | Name        | IntentType | Budget_Range | Nature of Purchase | Service Required | Size | Enquiry Source | Enquiry Sub Source | Range      | InterestedName | InterestedRange | Reason    | UnitName               |
     | ashwinimca96@gmail.com | RIS@2025 | 9999934543  | example@jenkins.com | Jenkinstest | Tenant     | 5-10L        | Rent               | Land             | 2500 | Online         | Google             | below 10000 | Egmore         | 15              | Qualified | Vellore ILocation test |
+    
+    
+ Scenario: Go to calendar and verify the task are creating for the user
+    Given User navigate to salesforce URL
+    Then Add the "<Username>" and the "<Password>"
+    
+  
+

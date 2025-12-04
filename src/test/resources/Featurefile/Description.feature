@@ -58,9 +58,15 @@ Examples:
     | ashwinimca96@gmail.com | RIS@2025 | 9999934543  | example@jenkins.com | Jenkinstest | Tenant     | 5-10L        | Rent               | Land             | 2500 | Online         | Google             | below 10000 | Egmore         | 15              | Qualified | Vellore ILocation test |
     
     
- Scenario: Go to calendar and verify the task are creating for the user
+ Scenario: Go to calendar and verify the error mesg for click on the past date
     Given User navigate to salesforce URL
     Then Add the "<Username>" and the "<Password>"
+    And Click on the Login button
+    And navigate to the "Calendar" and verify the user navigate to calendar in current date
+    
+Examples:
+   |Username                |Password   |
+   |ashwinimca96@gmail.com  |RIS@2025   |
     
   
 

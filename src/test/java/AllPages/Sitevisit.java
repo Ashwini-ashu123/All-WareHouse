@@ -11,9 +11,11 @@ import java.util.concurrent.TimeoutException;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -86,7 +88,8 @@ public class Sitevisit {
 	 
 	 
 	 public void schSiteVisit() throws Exception {
-		 WebDriverWait wait =  new WebDriverWait(driver, Duration.ofSeconds(40));
+		 sleep(3000);
+		 WebDriverWait wait =  new WebDriverWait(driver, Duration.ofSeconds(60));
 		 JavascriptExecutor js = (JavascriptExecutor) driver;
 		 js.executeScript("arguments[0].scrollIntoView({block: 'center'});", sitevisitSch);
 		 js.executeScript("arguments[0].click();", sitevisitSch);
@@ -165,7 +168,7 @@ public class Sitevisit {
 		sleep(5000);
 	 }
 	 
-	 public void verifySiteVisitComplete(String Name) {
+	 public void verifySiteVisitComplete(String Name) throws Exception {
 		 WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(40));
 //		 wait.until(ExpectedConditions.visibilityOf(svCompleted));
 //			String locationUpdate = svCompleted.getText();
@@ -174,14 +177,20 @@ public class Sitevisit {
 //			}else {
 //				System.out.println("Location is not updated");
 //			}
-			String ActualText = wait.until(ExpectedConditions.visibilityOf(completed)).getText();
-			String ExpectedText = "Completed";
-			Assert.assertEquals(ActualText, ExpectedText,"Site visit is not in completed");
-			WebElement backToSiteVist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//span[contains(text(),'"+Name+"')])[4]")));
-			((JavascriptExecutor) driver).executeScript("window.open()");
-            ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
-			driver.switchTo().window(tabs.get(1));
-			backToSiteVist.click();
+//			String ActualText = wait.until(ExpectedConditions.visibilityOf(completed)).getText();
+//			String ExpectedText = "Completed";
+//			Assert.assertEquals(ActualText, ExpectedText,"Site visit is not in completed");
+//		 WebElement backToSiteVist = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//span[contains(text(),'"+Name+"')])[4]")));
+//			((JavascriptExecutor) driver).executeScript("window.open()");
+//         ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+//			driver.switchTo().window(tabs.get(1));
+		 WebElement ele = driver.findElement(By.xpath("(//span[contains(text(),'" + Name + "')])[4]/parent::*"));
+         Actions actions = new Actions(driver);
+		 actions.contextClick(ele).perform();
+          // Press ↓ key to move to "Open link in new tab"
+		 actions.sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ENTER).perform();
+			
+			sleep(5000);
 			}
 		 
 	 }

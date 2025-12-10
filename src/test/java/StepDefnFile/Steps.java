@@ -13,7 +13,9 @@ import AllPages.Enquiry;
 import AllPages.Negotiation;
 import AllPages.OpportunityPage;
 import AllPages.Sitevisit;
+import AllPages.calendar;
 import AllPages.loginCred;
+import AllPages.task;
 import hooksClass.hooks;
 import io.cucumber.java.en.*;
 
@@ -26,6 +28,8 @@ public class Steps {
 	OpportunityPage Opp;
 	Sitevisit sv;
 	Negotiation neg;
+	calendar cal;
+	task tsk;
 	
 	public Steps() {
 		  driver = hooks.driver;
@@ -34,6 +38,8 @@ public class Steps {
 		  Opp = new OpportunityPage(driver);
 		  sv = new Sitevisit(driver);
 		  neg = new Negotiation(driver);
+		  cal = new calendar(driver);
+		  tsk = new task(driver);
 		}
 	
 	
@@ -160,7 +166,7 @@ public class Steps {
 	}
 	
 	@Then("verify the site visit is marked as complete with the location update and move to {string}")
-	public void sitevisitVerify(String Name) {
+	public void sitevisitVerify(String Name) throws Exception {
 		sv.verifySiteVisitComplete(Name);
 	}
 	
@@ -183,6 +189,16 @@ public class Steps {
 	@Then("verify the negotition is created in Files")
 	public void verifyFiles() throws Exception {
 		neg.verifyNego();
+	}
+	
+	@And("navigate to the {string} and verify as the sales rep denied the access")
+	public void calendarTab(String calendar) throws Exception {
+		cal.navigateTab(calendar);
+	}
+	
+	@Then("click on the Task and create the task")
+	public void taskCreate() throws Exception {
+		tsk.createTask();
 	}
 	
 	

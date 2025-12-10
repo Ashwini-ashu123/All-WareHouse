@@ -109,7 +109,7 @@ public class Enquiry {
 	@FindBy(xpath="//button[contains(text(),'Submit')]")
 	WebElement Submit;
 	
-	@FindBy(xpath="//records-entity-label[contains(text(),'Opportunity')]")
+	@FindBy(xpath="//records-entity-label[contains(text(),'Opportunities')]")
 	WebElement OppText;
 	
 	private String lastName;
@@ -260,7 +260,7 @@ public class Enquiry {
 		String Actual = OppText.getText();
 		WebElement AcText = driver.findElement(By.xpath("//div//span//slot//lightning-formatted-text[contains(text(),'"+ EnqName +"')]"));
 		String Actual2Text = AcText.getText();
-		String Expected1 = "Opportunity";
+		String Expected1 = "Opportunities";
 		String Expected2 = EnqName;
 		Assert.assertEquals( Actual,Expected1, "Mismatch in Opportunity text");
 		Assert.assertEquals(Actual2Text, Expected2,"Mismatch in name field");

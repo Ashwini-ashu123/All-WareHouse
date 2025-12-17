@@ -10,6 +10,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import AllPages.Enquiry;
+import AllPages.Files;
 import AllPages.Negotiation;
 import AllPages.OpportunityPage;
 import AllPages.Sitevisit;
@@ -18,6 +19,7 @@ import AllPages.loginCred;
 import AllPages.task;
 import hooksClass.hooks;
 import io.cucumber.java.en.*;
+import Utility.TestDataContext;
 
 public class Steps {
 	
@@ -30,6 +32,7 @@ public class Steps {
 	Negotiation neg;
 	calendar cal;
 	task tsk;
+	Files fil;
 	
 	public Steps() {
 		  driver = hooks.driver;
@@ -40,6 +43,7 @@ public class Steps {
 		  neg = new Negotiation(driver);
 		  cal = new calendar(driver);
 		  tsk = new task(driver);
+		  fil = new Files(driver);
 		}
 	
 	
@@ -48,10 +52,9 @@ public class Steps {
 	    lc.saleforceURL();
 	}
 
-	@Then("Add the {string} and the {string}")
-	public void add_the_and_the(String uname, String pass) {
-		lc.UserNameAndPassword(uname, pass);
-	    
+	@Then("Add the username and the password")
+	public void add_the_and_the() {
+		lc.UserNameAndPassword(TestDataContext.get("Username"),TestDataContext.get("Password"));
 	}
 
 	@Then("Click on the Login button")
@@ -75,11 +78,11 @@ public class Steps {
 	    lc.NewClick();
 	}
 	
-	@Then("Fill the {string} {string} and {string} {string}  {string}  {string} {string} {string} {string} {string}")
-	public void fill_the_and(String Phone, String mail, String laname, String itype, String Budget, String nop1, String service, String size, String enqs, String enqss) throws Exception {
-	    enq.Screen1Enq(Phone, mail);
-	    enq.screen2A3(laname, itype);
-	    enq.screen4(Budget, nop1, service, size, enqs, enqss);
+	@Then("Fill the details for the enquiry")
+	public void fill_the_and() throws Exception {
+	    enq.Screen1Enq(TestDataContext.get("PhoneNumber"), TestDataContext.get("mail"));
+	    enq.screen2A3(TestDataContext.get("Name"), TestDataContext.get("IntentType"));
+	    enq.screen4(TestDataContext.get("Budget_Range"),TestDataContext.get("NatureOfPurchase"),TestDataContext.get("ServiceRequired"),TestDataContext.get("Size"),TestDataContext.get("EnquirySource"),TestDataContext.get("EnquirySubSource"));
 	}
 	
 	@And("verify the record is created successfully")
@@ -87,24 +90,27 @@ public class Steps {
 		enq.verifyRecText();
 	}
 	
-	@Then("click on the Search button and search the {string}  and click it")
-	public void Search_the_Enquiry(String ename) throws Exception {
-		enq.enqSearchoption(ename);
+	@Then("click on the Search button and search the Name and click it")
+	public void Search_the_Enquiry() throws Exception {
+		enq.enqSearchoption(TestDataContext.get("Name"));
 	}
 	
-	@Then("edit the enquiry details {string} and Save it")
-	public void editEnquirydetails(String range) throws Exception {
-		enq.editEnquiry(range);
+
+	
+	@Then("edit the enquiry details for Range and Save it")
+	public void editEnquirydetails() throws Exception {
+		enq.editEnquiry(TestDataContext.get("Range"));
 	}
 	
-	@And("Add the interested location in the Enquiry {string} {string} and change the status to closed - {string}")
-	public void addInteresteLocation(String Inname1, String InRange1,String reason) throws Exception {
-		enq.intrestedLocation(Inname1, InRange1);
-		enq.convertToqualified(reason);
+	@And("Add the interested location in the Enquiry  and change the status to closed")
+	public void addInteresteLocation() throws Exception {
+		enq.intrestedLocation(TestDataContext.get("InterestedName"), TestDataContext.get("InterestedRange"));
+		enq.convertToqualified(TestDataContext.get("Reason"));
 	}
-	@And("Verify once done it is navigating the opportunity page with {string}")
-	public void verifyNavigateToOpportunity(String Name1) {
-		enq.VerifyOpportunityNavigate(Name1);
+	
+	@And("Verify once done it is navigating the opportunity page with Name")
+	public void verifyNavigateToOpportunity() {
+		enq.VerifyOpportunityNavigate(TestDataContext.get("Name"));
 		
 	}
 	
@@ -125,9 +131,9 @@ public class Steps {
 		Opp.VerifyStage(stage);
 	}
 	
-	@And("User select the unit from search unit tab and add {string} the unit in Options")
-	public void unitAdd(String UnitName1) throws Exception {
-		Opp.searchUnitAdd(UnitName1);
+	@And("User select the unit from search unit tab and add the unit in Options")
+	public void unitAdd() throws Exception {
+		Opp.searchUnitAdd(TestDataContext.get("UnitName"));
 	}
 	
 	@And("Click on the generate proposal and send it to customer")
@@ -145,14 +151,14 @@ public class Steps {
 		sv.schSiteVisit();
 	}
 	
-	@And("verify the site visit is created successfully with the {string}")
-	public void verifySiteVisit(String Name1) {
-		sv.verifySiteVisit(Name1);
+	@And("verify the site visit is created successfully with the Name")
+	public void verifySiteVisit() {
+		sv.verifySiteVisit(TestDataContext.get("Name"));
 	}
 	
-	@And("navigate to the site visit and check the status of in {string} and click on it")
-	public void siteVisitClick(String Name1) {
-		sv.VerifySVStatus_click(Name1);
+	@And("navigate to the site visit and check the status of the SV  and click on it")
+	public void siteVisitClick() {
+		sv.VerifySVStatus_click(TestDataContext.get("Name"));
 	}
 	
 	@Then("verify the user is in site visit page")
@@ -165,9 +171,9 @@ public class Steps {
 		sv.siteVisitProcess();
 	}
 	
-	@Then("verify the site visit is marked as complete with the location update and move to {string}")
-	public void sitevisitVerify(String Name) throws Exception {
-		sv.verifySiteVisitComplete(Name);
+	@Then("verify the site visit is marked as complete with the location update and move to Name")
+	public void sitevisitVerify() throws Exception {
+		sv.verifySiteVisitComplete(TestDataContext.get("Name"));
 	}
 	
 	@And("Verify the site visit is completed")
@@ -196,12 +202,41 @@ public class Steps {
 		cal.navigateTab(calendar);
 	}
 	
-	@Then("click on the Task and create the task")
-	public void taskCreate() throws Exception {
-		tsk.createTask();
+	@Then("click on the Task and create the task with {string}")
+	public void taskCreate(String Name) throws Exception {
+		tsk.createTask(Name);
 	}
 	
+	@And("Verify the fellow - up task is created with {string}")
+	public void verifyTask(String Name) {
+		tsk.verifyTask(Name);
+	}
 	
+	@Then("navigate to calendar and verify the fellow -up task is shown")
+	public void verifyInCalendar() throws Exception {
+		tsk.verifyInCalendar();
+	}
+	
+	@And("navigate to the files section")
+	public void files() throws Exception {
+		fil.selectFiles();
+		
+	}
+	
+	@Then("upload the file and verify the it shows in the file section")
+	public void uploadFiles() throws Exception {
+		fil.uploadFiles();
+	}
+	
+	@Then("click on the view and download the file")
+	public void downloadFiles() throws Exception {
+		fil.downloadFiles();
+	}
+	
+	@And("Logout from the application")
+	public void logout() {
+		
+	}
 
 
 	

@@ -18,6 +18,7 @@ public class calendar {
 	
 	WebDriver driver;
 	
+	
 	public calendar(WebDriver driver) {
 		this.driver=driver;
 		driver.manage().window().maximize();
@@ -28,22 +29,34 @@ public class calendar {
 	WebElement monthName;
 	
 	@FindBy(xpath="//td[contains(@class,'fc-today')]")
-	WebElement todayDate;
+	private WebElement todayDate;
 	
 	@FindBy(xpath="//td[contains(@class,'fc-past')]")
-	WebElement pastdate;
+	private WebElement pastdate;
 	
 	@FindBy(xpath="//div[@class='toastContent slds-notify__content slds-align-middle']")
 	WebElement warningMesg;
 	
 	@FindBy(xpath="//td[contains(@class,'fc-future')]")
-	WebElement futureDate;
+	private WebElement futureDate;
 	
 	@FindBy(xpath="(//*[@class='slds-icon slds-icon_xx-small'])[5]")
 	WebElement close;
 	
 	@FindBy(xpath="//div[@class='toastTitle slds-text-heading--small']")
 	WebElement AccessdeniedMesg;
+	
+	public WebElement getPastDate() {
+		return pastdate;
+	}
+	
+	public WebElement getFutureDate() {
+		return futureDate;
+	}
+	
+	public WebElement getTodayDate() {
+		return todayDate;
+	}
 	
 	public void navigateTab(String TabName) throws Exception {
 		WebDriverWait wait = new WebDriverWait (driver, Duration.ofSeconds(40));

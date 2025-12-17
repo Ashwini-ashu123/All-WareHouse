@@ -52,6 +52,12 @@ public class loginCred {
 	@FindBy(xpath="//div[@title='New']")
 	WebElement New;
 	
+	@FindBy(xpath="(//span[@class='photoContainer forceSocialPhoto'])[1]")
+	WebElement profile;
+	
+	@FindBy(xpath="//*[contains(text(),'Log Out')]")
+	WebElement logout;
+	
 	
 	public void  saleforceURL() {
 		driver.get("https://test.salesforce.com/");
@@ -89,6 +95,13 @@ public class loginCred {
 	public void NewClick() throws Exception {
 		New.click();
 		Thread.sleep(5000);
+		
+	}
+	
+	public void Logout() {
+		WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(40));
+		wait.until(ExpectedConditions.elementToBeClickable(profile)).click();
+		wait.until(ExpectedConditions.elementToBeClickable(logout)).click();
 		
 	}
 

@@ -1,11 +1,8 @@
 Feature: End-to-end flow for All Warehouse Application for Sales rep
 
 @Regression
-Scenario Outline: Complete Sales Lifecycle from Enquiry Creation to Negotiation Stage for salesrep user
-    Given User navigate to salesforce URL
-    Then Add the username and the password
-    And Click on the Login button
-
+Scenario: Complete Sales Lifecycle from Enquiry Creation to Negotiation Stage for salesrep user
+    Given User start execution for Run <Run>
     # --- ENQUIRY CREATION ---
     Then click on the Enquiries tab and verify the user navigate to Enquiry page
     Then click on the New tab and create the new Enquiry with details
@@ -21,7 +18,7 @@ Scenario Outline: Complete Sales Lifecycle from Enquiry Creation to Negotiation 
 
     # --- OPPORTUNITY: ADD UNIT & GENERATE PROPOSAL ---
     #Then navigate to the Opportunity tab and verify the user navigate to the Opportunity page
-    #And click on the search button and search the "<Name>" and click it
+    #And click on the search button and search the Name and click it
     Then verify the record is in "Qualified" stage
     And User select the unit from search unit tab and add the unit in Options
     And Click on the generate proposal and send it to customer

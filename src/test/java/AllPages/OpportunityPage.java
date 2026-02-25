@@ -45,7 +45,7 @@ public class OpportunityPage {
 	@FindBy(xpath="//td/div[@title='Name']")
 	WebElement verifyUnit;
 	
-	@FindBy(xpath="(//lightning-input//span//input[@type='checkbox'])[4]")
+	@FindBy(xpath="//span[@class='slds-form-element__label']/preceding-sibling::span")
 	WebElement checkboxUnit;
 	
 	@FindBy(xpath="//button[contains(text(),'Add Unit')]")
@@ -60,7 +60,8 @@ public class OpportunityPage {
 	@FindBy(xpath="//button[contains(text(),'Generate Proposal')]")
 	WebElement generateProp;
 	
-	@FindBy(xpath="//span[@class='slds-form-element__label']/preceding-sibling::span")
+//	@FindBy(xpath="//c-short-list-unit-row//table//label[@class='slds-checkbox__label']")
+	@FindBy(xpath="//div[@class=\"quick-actions-panel\"]//label")
 	WebElement propcheckbox;
 	
 	@FindBy(xpath="//button[contains(text(),'Next')]")
@@ -129,8 +130,13 @@ public class OpportunityPage {
 		sleep(4000);
 		wait.until(ExpectedConditions.elementToBeClickable(generateProp)).click();
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].scrollIntoView()", propcheckbox);
-		js.executeScript("arguments[0].click()", propcheckbox);
+//		js.executeScript(
+//			    "arguments[0].checked = true;" +
+//			    "arguments[0].dispatchEvent(new Event('change', { bubbles: true, composed: true }));",
+//			    propcheckbox
+//			);
+		wait.until(ExpectedConditions.elementToBeClickable(propcheckbox)).click();
+        System.out.println("checkbox is clicked");
 		wait.until(ExpectedConditions.elementToBeClickable(nextbutton)).click();
 		sleep(7000);
 		String ProposalName = "test automation proposal";

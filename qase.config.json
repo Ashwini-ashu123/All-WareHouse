@@ -1,0 +1,13 @@
+{
+  "mode": "testops",
+  "fallback": "report",
+  "testops": {
+    "api": {
+      "token": "c945e12939aaee2f0b77b6f1d57679b72eb1433d3debf4fd5cfcbcce5a429ace"
+    },
+    "project": "PROJECTCODE",
+    "run": {
+      "complete": true
+    }
+  }
+}

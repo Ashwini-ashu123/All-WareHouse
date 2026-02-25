@@ -20,6 +20,8 @@ import AllPages.task;
 import hooksClass.hooks;
 import io.cucumber.java.en.*;
 import Utility.TestDataContext;
+import Utility.ExcelContent;
+import Utility.ExcelReader;
 
 public class Steps {
 	
@@ -45,6 +47,18 @@ public class Steps {
 		  tsk = new task(driver);
 		  fil = new Files(driver);
 		}
+	
+	
+	@Given("User start execution for Run {int}")
+	public void user_start_execution_for_run(Integer run) {
+
+	    ExcelContent.currentRow = run;
+
+	    
+	    ExcelReader.loadRowData(run);
+
+	    System.out.println("✅ Excel data loaded for row: " + run);
+	}
 	
 	
 	@Given("User navigate to salesforce URL")
@@ -120,9 +134,9 @@ public class Steps {
 		
 	}
 	
-	@And("click on the search button and search the {string} and click it")
-	public void searchOpp(String Oppname) throws Exception {
-		Opp.searchField(Oppname);
+	@And("click on the search button and search the Name and click it")
+	public void searchOpp() throws Exception {
+		Opp.searchField(TestDataContext.get("Name"));
 		
 	}
 	

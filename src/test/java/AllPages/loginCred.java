@@ -82,6 +82,7 @@ public class loginCred {
 	}
 	
 	public void EnqClick() throws Exception {
+		Thread.sleep(10000);
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		dot.click();
 		wait.until(ExpectedConditions.elementToBeClickable(AWHTab)).click();

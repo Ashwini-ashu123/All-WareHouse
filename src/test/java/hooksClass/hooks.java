@@ -41,7 +41,7 @@ public class hooks {
 
         driver.findElement(By.id("username")).sendKeys("ashwinimca96@gmail.com");
 
-        driver.findElement(By.id("password")).sendKeys("RIS@2025");
+        driver.findElement(By.id("password")).sendKeys("RIS@2026");
 
         driver.findElement(By.id("Login")).click();
 

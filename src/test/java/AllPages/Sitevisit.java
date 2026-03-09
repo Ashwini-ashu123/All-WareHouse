@@ -60,7 +60,7 @@ public class Sitevisit {
 	 @FindBy(xpath="//button[@name='Site_Visit__c.Mark_Complete']")
 	 WebElement markComplete;
 	 
-	 @FindBy(xpath="(//span[@class='slds-checkbox_faux'])[3]")
+	 @FindBy(xpath="(//span[@class='slds-checkbox_faux_container'])[2]")
 	 WebElement toggle;
 	 
 	 @FindBy(xpath="//button[contains(text(),'Capture Image')]")
@@ -95,7 +95,10 @@ public class Sitevisit {
 		 js.executeScript("arguments[0].click();", sitevisitSch);
 		 WebElement date1 = wait.until((ExpectedConditions.visibilityOf(datefield)));
 		 date1.click();
-		 String datefill = "25-Dec-2025";
+		 String datefill = java.time.LocalDate.now()
+			        .plusDays(3)
+			        .format(java.time.format.DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
+//		 String datefill = "25-Dec-2025";
 		 String timeFill = "3.30PM";
 		 String visitNu = "3";
 		 date1.sendKeys(datefill);

@@ -46,7 +46,7 @@ public class Enquiry {
 	@FindBy(xpath="//button[@type='submit']")
 	WebElement save;
 	
-	@FindBy(name="Intent_Type")
+	@FindBy(xpath="//select[@name='Intent_Type']")
 	WebElement type;
 	
 	@FindBy(name="Budget_Range1__c")

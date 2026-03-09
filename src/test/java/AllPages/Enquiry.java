@@ -132,7 +132,7 @@ public class Enquiry {
 		sel.selectByVisibleText(Itype);
 		sleep(3000);
 		Next.click();
-	}
+	} 
 	
 	public void screen4(String bud,String nop,String service, String size, String Enq, String EnqSource) throws Exception {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));

@@ -6,11 +6,6 @@ pipeline {
     }
 
     stages {
-        stage('Checkout SCM') {
-            steps {
-                git url: 'https://github.com/Ashwini-ashu123/All-WareHouse.git', branch: 'master'
-            }
-        }
 
         stage('Build & Run Tests') {
             steps {
@@ -29,9 +24,6 @@ pipeline {
                 archiveArtifacts artifacts: 'target/**', fingerprint: true
             }
         }
+
     }
 }
-
-
-
-

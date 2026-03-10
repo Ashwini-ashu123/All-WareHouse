@@ -12,7 +12,9 @@ import io.cucumber.testng.CucumberOptions;
                 "json:target/cucumber.json",
                 "junit:target/cucumber.xml"
         },
-        monochrome = true
+        
+        monochrome = true,
+        tags = "@Regression"
 )
 public class runnerPage extends AbstractTestNGCucumberTests {
 }

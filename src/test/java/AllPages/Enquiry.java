@@ -14,12 +14,11 @@ import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-
 import static org.junit.Assert.*;
-
 import static java.lang.Thread.sleep;
-
 import java.time.Duration;
+
+
 
 public class Enquiry {
 	

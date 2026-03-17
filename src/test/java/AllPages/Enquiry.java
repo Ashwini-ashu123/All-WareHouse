@@ -33,7 +33,7 @@ public class Enquiry {
 	@FindBy(xpath = "//input[@placeholder='Enter Mobile Number']")
 	WebElement mobile;
 	
-	@FindBy(xpath = "//input[@type='text']")
+	@FindBy(xpath = "//input[@placeholder='you@example.com']")
 	WebElement Mail;
 	
 	@FindBy(xpath="//button[contains(text(),'Next')]")
@@ -51,19 +51,19 @@ public class Enquiry {
 	@FindBy(name="Budget_Range1__c")
 	WebElement budget;
 	
-	@FindBy(xpath="(//div[@class='slds-form-element__control'])[1]")
+	@FindBy(xpath="//button[@aria-label='Nature of Purchase']")
 	WebElement NOP;
 	
-	@FindBy(xpath="(//div[@class='slds-form-element__control'])[2]")
+	@FindBy(xpath="//button[@aria-label='Service Required']")
 	WebElement ser;
 	
 	@FindBy(xpath="//input[@name='Size_in_sqfts__c']")
 	WebElement sizeinSq;
 	
-	@FindBy(xpath="(//div[@class='slds-form-element__control'])[3]")
+	@FindBy(xpath="//button[@aria-label='Enquiry Source']")
 	WebElement enqS;
 	
-	@FindBy(xpath="(//div[@class='slds-form-element__control'])[4]")
+	@FindBy(xpath="//button[@aria-label='Enquiry Sub Source']")
 	WebElement enqSS;
 	
 	@FindBy(xpath="(//lightning-formatted-text[@slot='primaryField'])[2]")
@@ -116,7 +116,7 @@ public class Enquiry {
 	private String lastName;
 	
 	public void Screen1Enq(String Phone, String mail) throws Exception {
-		sleep(2000);
+		sleep(5000);
 		mobile.sendKeys(Phone);
 		Mail.sendKeys(mail);
 		sleep(1000);
@@ -140,7 +140,7 @@ public class Enquiry {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
 		wait.until(ExpectedConditions.visibilityOf(budget));
 		budget.sendKeys(bud);
-		sleep(3000);
+		sleep(10000);
 	    
 		NOP.click();
 	    sleep(3000);
@@ -247,7 +247,7 @@ public class Enquiry {
 		closedClick.click();
 		wait.until(ExpectedConditions.elementToBeClickable(reasonClosed));
 		reasonClosed.click();
-		WebElement RC = driver.findElement(By.xpath("//span[@title='"+Qualified1+"']"));
+		WebElement RC = driver.findElement(By.xpath("//lightning-base-combobox-item[@data-value='"+Qualified1+"']"));
 		wait.until(ExpectedConditions.elementToBeClickable(RC));
 		RC.click();
 		wait.until(ExpectedConditions.elementToBeClickable(editSave));

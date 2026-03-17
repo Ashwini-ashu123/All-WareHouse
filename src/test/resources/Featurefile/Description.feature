@@ -50,7 +50,7 @@ Scenario: Complete Sales Lifecycle from Enquiry Creation to Negotiation Stage fo
     And fill the checklist form and click on save
     Then verify the negotition is created in Files
     Then verify the record is in "Negotiation" stage
-    And Logout from the application
+    #And Logout from the application
 
 Examples:
   | Run |

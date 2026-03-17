@@ -245,6 +245,8 @@ public class Enquiry {
 		StatusClick.click();
 		wait.until(ExpectedConditions.elementToBeClickable(closedClick));
 		closedClick.click();
+		
+		
 		wait.until(ExpectedConditions.elementToBeClickable(reasonClosed));
 		reasonClosed.click();
 		WebElement RC = driver.findElement(By.xpath("//lightning-base-combobox-item[@data-value='"+Qualified1+"']"));

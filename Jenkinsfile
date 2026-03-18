@@ -24,23 +24,42 @@ pipeline {
                 archiveArtifacts artifacts: 'target/**', fingerprint: true
             }
         }
+
+        stage('AI Analysis') {
+            steps {
+                script {
+                    // Save Jenkins log
+                    def log = currentBuild.rawBuild.getLog(1000).join("\n")
+                    writeFile file: 'log.txt', text: log
+                }
+
+                // Run Python script with API key
+                withCredentials([string(credentialsId: 'openai-key', variable: 'OPENAI_API_KEY')]) {
+                    bat 'python ai_summary.py'
+                }
+            }
+        }
     }
 
     post {
         always {
-            emailext (
-                subject: "Build: ${env.JOB_NAME} #${env.BUILD_NUMBER} - ${currentBuild.currentResult}",
-                body: """
+            script {
+                def summary = readFile('summary.txt')
+                
+                emailext (
+                    subject: "Build: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                    body: """
 Build Status: ${currentBuild.currentResult}
 
-Job: ${env.JOB_NAME}
-Build Number: ${env.BUILD_NUMBER}
+🤖 AI Summary:
+${summary}
 
-View Report: ${env.BUILD_URL}
-
+🔗 Build URL:
+${env.BUILD_URL}
 """,
-                to: "ashwinigmeet@gmail.com"
-            )
+                    to: "ashwinigmeet@gmail.com"
+                )
+            }
         }
     }
 }

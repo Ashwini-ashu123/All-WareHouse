@@ -24,6 +24,23 @@ pipeline {
                 archiveArtifacts artifacts: 'target/**', fingerprint: true
             }
         }
+    }
 
+    post {
+        always {
+            emailext (
+                subject: "Build: ${env.JOB_NAME} #${env.BUILD_NUMBER} - ${currentBuild.currentResult}",
+                body: """
+Build Status: ${currentBuild.currentResult}
+
+Job: ${env.JOB_NAME}
+Build Number: ${env.BUILD_NUMBER}
+
+View Report: ${env.BUILD_URL}
+
+""",
+                to: "ashwinigmeet@gmail.com"
+            )
+        }
     }
 }

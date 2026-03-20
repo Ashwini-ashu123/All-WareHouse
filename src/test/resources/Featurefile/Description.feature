@@ -24,6 +24,7 @@ Scenario: Complete Sales Lifecycle from Enquiry Creation to Negotiation Stage fo
     And Click on the generate proposal and send it to customer
     Then verify the proposal is created in Files
     Then verify the record is in "Proposal" stage
+    
 
     # --- CREATE SITE VISIT ---
     #Then navigate to the Opportunity tab and verify the user navigate to the Opportunity page

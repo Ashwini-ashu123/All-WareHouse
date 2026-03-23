@@ -41,11 +41,12 @@ pipeline {
         }
     }
 
-    post {
-        always {
+   post {
+    always {
+        node {
             script {
-                def summary = readFile('summary.txt')
-                
+                def summary = fileExists('summary.txt') ? readFile('summary.txt') : "No summary generated"
+
                 emailext (
                     subject: "Build: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                     body: """

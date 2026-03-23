@@ -18,7 +18,7 @@ public class hooks {
     @BeforeAll
     public static void setup() throws Exception {
 
-        // -------- Launch Browser --------
+        
         String downloadPath = "C:\\Users\\Aswini\\Downloads";
         String profilePath = "C:\\Users\\Aswini\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\s4hgnjw7.default-release";
 
@@ -36,7 +36,7 @@ public class hooks {
         driver = new FirefoxDriver(options);
         driver.manage().window().maximize();
 
-        // -------- LOGIN ONCE --------
+      
         driver.get("https://test.salesforce.com");
 
         driver.findElement(By.id("username")).sendKeys("ashwinimca96@gmail.com");
